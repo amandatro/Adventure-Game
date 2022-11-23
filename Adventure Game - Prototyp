@@ -1,1 +1,44 @@
-print("HELLO")
+svars_alternativ = ["Vänster", "Höger", "Framåt", "vänster", "höger", "framåt"]
+import random as rand
+from time import sleep
+spelare_hp = 100
+spelare_hp2 = 100
+
+def fälla():
+    sleep(1)
+    fälla_hp = rand.randint(1, 7)
+    print(f"Du märker inte va fällen och går rakt in i den")
+    print(f"Du förlorar {fälla_hp} hp!")
+    spealare_hp2 = spelare_hp - fälla_hp
+    print(spelare_hp)
+    print(spelare_hp2)
+
+while True:
+    while True:
+        sleep(1)
+        svar = str(input("Vilket håll vill du gå? (Vänster, Höger, Framåt) -> "))
+        if svar in svars_alternativ:
+            sleep(1)
+            print(f"Du gick {svar}!")
+            break
+        else:
+            sleep(1)
+            print("Ogiltigt svar, försök igen.")
+            continue
+
+    while True:
+        händelse = rand.randint(0, 3)
+        if svar in svars_alternativ:
+            if händelse == 3:
+                sleep(1)
+                print(f"Du gick åt {svar}, där inne finns ett monster.")
+                break
+            if händelse == 2:
+                sleep(1)
+                print(f"Du gick åt {svar}, där inne finns en fälla.")
+                fälla()
+                break
+            if händelse == 1:
+                sleep(1)
+                print(f"Du gick åt {svar}, där inne finns en kista.")
+                break
