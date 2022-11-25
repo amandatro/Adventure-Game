@@ -1,0 +1,77 @@
+import random as rand
+from time import sleep
+
+svar_ryggsäck = ["Ryggsäck", "ryggsäck"]
+svar_egenskaper = ["Egenskaper", "egenskaper"]
+svar_utforska = ["Utforska", "utforska"]
+svars_alternativ = ["Vänster", "Höger", "Framåt", "vänster", "höger", "framåt"]
+monster_typ = ['slime', 'zombie', 'drake']
+
+
+def monster_version():
+    monster = rand.choice(monster_typ)
+    monster_hp = rand.randint(1, 7)
+    sleep(1)
+    print(f"Det är en {monster} med {monster_hp} hp!")
+    sleep(1)
+    
+
+def fälla():
+    sleep(1)
+    fälla_hp = rand.randint(1, 7)
+    print(f"Du märker inte av fällen och går rakt in i den")
+    sleep(1)
+    print(f"Du förlorar {fälla_hp} hp!")
+    sleep(1)
+
+
+
+while True:
+    sleep(1)
+    svar_meny = str(input("Vad vill du göra? (Ryggsäck, Egenskaper, Utforska) -> "))
+    if svar_meny in svar_utforska:
+        while True:
+            sleep(1)
+            svar = str(input("Vilket håll vill du gå? (Vänster, Höger, Framåt) -> "))
+            if svar in svars_alternativ:
+                sleep(1)
+                print(f"Du gick {svar}!")
+                break
+            else:
+                sleep(1)
+                print("Ogiltigt svar, försök igen.")
+                continue
+
+        while True:
+            händelse = rand.randint(0, 3)
+            if svar in svars_alternativ:
+                if händelse == 3:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns ett monster.")
+                    monster_version()
+                    break
+                if händelse == 2:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns en fälla.")
+                    fälla()
+                    break
+                if händelse == 1:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns en kista.")
+                    break
+                
+    elif svar_meny in svar_egenskaper:
+        sleep(1)
+        print("tbc")
+        continue
+    elif svar_meny in svar_ryggsäck:
+        sleep(1)
+        print("tbc")
+        continue
+    else:
+        sleep(1)
+        print("Ogiltigt svar, försök igen")
+        continue
+
+
+           
