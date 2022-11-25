@@ -75,3 +75,25 @@ while True:
 
 
            
+class Player():
+    def __init__(strength, hp, inventory, level, player_name):
+        self.strength = strength
+        self.hp = hp
+        self.inventory = inventory
+        self.level = level
+        self.player_name = player_name
+
+   def player_name():
+       str(input("Vad heter du? -> "))
+
+    def introduce(self):
+        print("Du är", self.player_name)
+
+
+
+class Item():
+    def __init__(name, strength_bonus)
+    self.name = name
+    self.strength_bonus = strength_bonus
+    
+
