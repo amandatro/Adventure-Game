@@ -1,0 +1,120 @@
+import random as rand
+from time import sleep
+
+#Klass som håller information om spelarens egenskper.
+class Player():
+    def __init__(self, strength, inventory, level, player_name, current_hp, max_hp):
+        self.strength = strength
+        self.inventory = inventory
+        self.level = level
+        self.player_name = player_name
+        self.current_hp = current_hp
+        self.max_hp = max_hp
+
+
+    def Player_name(self):
+       self.player_name = input("Vad heter du? -> ")
+
+    def introduce(self):
+        print("Du heter", self.player_name)
+
+    def HP(self):
+        self.max_hp = 50
+        self.current_hp = self.max_hp - fälla_attack
+        print(self.max_hp)
+        print("Din hp är: " + str(self.current_hp))
+
+
+#Klass som håller koll på föremålens egenskaper.
+class Item():
+    def __init__(self, name, strength_bonus):
+        self.name = name
+        self.strength_bonus = strength_bonus
+
+
+#funktion som slumpar fram monstrets typ och därmed hur mycket hp den har. 
+def monster_version():
+    monster = rand.choice(monster_typ)
+    monster_hp = rand.randint(1, 7)
+    sleep(1)
+    print(f"Det är en {monster} med {monster_hp} hp!")
+    sleep(1)
+
+#funktion som slumpar fram hur mycket hp man förlorar när spelaren går in i en fälla.
+def fälla():
+    sleep(1)
+    fälla_attack = rand.randint(1, 7)
+    print(f"Du märker inte av fällen och går rakt in i den")
+    sleep(1)
+    print(f"Du förlorar {fälla_hp} hp!")
+    sleep(1)
+
+#listor som används i programmet
+svars_alternativ = ["Vänster", "Höger", "Framåt", "vänster", "höger", "framåt"]
+monster_typ = ['slime', 'zombie', 'drake']
+
+
+#Introduktion till spelet och spelarens namn.
+T_Player = Player(1,1,1,"name",1,50)
+T_Player.Player_name()
+sleep(1)
+T_Player.introduce()
+
+#Spelets fullständiga loop
+while True:
+    sleep(1)
+    svar_meny = input("Vad vill du göra? (Ryggsäck, Egenskaper, Utforska) -> ")
+    svar_meny = svar_meny.lower()
+    if svar_meny == "utforska":
+        while True:
+            sleep(1)
+            svar = str(input("Vilket håll vill du gå? (Vänster, Höger, Framåt) -> "))
+            if svar in svars_alternativ:
+                sleep(1)
+                print(f"Du gick {svar}!")
+                break
+            else:
+                sleep(1)
+                print("Ogiltigt svar, försök igen.")
+                continue
+
+#Loopen som avgör händelsen om valet i den tidigare loopen är "Utforska".
+        while True:
+            händelse = rand.randint(0, 3)
+            if svar in svars_alternativ:
+                if händelse == 3:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns ett monster.")
+                    monster_version()
+                    break
+                if händelse == 2:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns en fälla.")
+                    fälla()
+                    break
+                if händelse == 1:
+                    sleep(1)
+                    print(f"Du gick {svar}, där inne finns en kista.")
+                    break
+
+
+#Övriga svarsalternativ som är en wip
+    elif svar_meny == "egenskaper":
+        sleep(1)
+        print(f"Egenskaper för {T_Player.player_name}:")
+        sleep(1)
+        print(f"Max hp är {T_Player.max_hp}")
+        T_Player.HP()
+        continue
+    
+    elif svar_meny == "ryggsäck":
+        sleep(1)
+        print("tbc")
+        continue
+    
+    else:
+        sleep(1)
+        print("Ogiltigt svar, försök igen")
+        continue
+
+
